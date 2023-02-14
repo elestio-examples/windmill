@@ -24,7 +24,7 @@ services:
       - 172.17.0.1:8496:8000
     environment:
       - DATABASE_URL=postgres://postgres:${DB_PASSWORD}@db/windmill?sslmode=disable
-      - BASE_URL=${BASE_URL}
+      - BASE_URL=https://${BASE_URL}
       - RUST_LOG=info
       ## You can set the number of workers to > 0 and not need any separate worker service
       - NUM_WORKERS=0
@@ -38,7 +38,7 @@ services:
     restart: always
     environment:
       - DATABASE_URL=postgres://postgres:${DB_PASSWORD}@db/windmill?sslmode=disable
-      - BASE_URL=${BASE_URL}
+      - BASE_URL=https://${BASE_URL}
       - BASE_INTERNAL_URL=http://windmill_server:8000
       - RUST_LOG=info
       - NUM_WORKERS=1
@@ -56,7 +56,7 @@ services:
     image: ghcr.io/windmill-labs/windmill-lsp:latest
     restart: always
     ports:
-      - 172.17.0.1:3001:3001
+      - 172.17.0.1:4443:3001
 
   caddy:
     image: caddy:2.5.2-alpine
@@ -64,7 +64,11 @@ services:
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
     ports:
-      - 172.17.0.1:4580:80
-      # - 172.17.0.1:4443:443
+      # - 172.17.0.1:4580:80
+      - 172.17.0.1:4443:443
     environment:
       - BASE_URL=${BASE_URL}
+
+volumes:
+  db_data: null
+  worker_dependency_cache: null
