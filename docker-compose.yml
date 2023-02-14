@@ -56,7 +56,7 @@ services:
     image: ghcr.io/windmill-labs/windmill-lsp:latest
     restart: always
     ports:
-      - 172.17.0.1:4443:3001
+      - 172.17.0.1:3001:3001
 
   caddy:
     image: caddy:2.5.2-alpine
