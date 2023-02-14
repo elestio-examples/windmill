@@ -64,7 +64,7 @@ services:
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
     ports:
-      # - 172.17.0.1:4580:80
-      - 172.17.0.1:4443:443
+      - 172.17.0.1:4580:80
+      # - 172.17.0.1:4443:443
     environment:
       - BASE_URL=${BASE_URL}
