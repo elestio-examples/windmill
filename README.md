@@ -15,3 +15,7 @@ You can can open Windmill UI here:
     URL: https://[CI_CD_DOMAIN]
     email:[ADMIN_EMAIL]
     password: [ADMIN_PASSWORD]
+
+# Documentation
+
+https://docs.windmill.dev/docs/intro
